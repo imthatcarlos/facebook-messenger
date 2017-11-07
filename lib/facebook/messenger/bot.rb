@@ -45,6 +45,25 @@ module Facebook
           response.body
         end
 
+        # Adding typing messages here so we can type from anywhere
+        def typing_on(sender, access_token:)
+          payload = {
+            recipient: sender,
+            sender_action: 'typing_on'
+          }
+
+          deliver(payload, access_token: access_token)
+        end
+
+        def typing_off(sender, access_token:)
+          payload = {
+            recipient: sender,
+            sender_action: 'typing_off'
+          }
+
+          deliver(payload, access_token: access_token)
+        end
+
         # Register a hook for the given event.
         #
         # event - A String describing a Messenger event.
